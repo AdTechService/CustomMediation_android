@@ -110,7 +110,7 @@ public class GMInterstitial extends TPInterstitialAdapter {
                         Log.i(TAG, "onFullScreenVideoCached: ");
                         if (isC2SBidding) {
                             if (onC2STokenListener != null) {
-                                double bestPrice = GMUtil.getBestPrice(ttFullScreenAd);
+                                double bestPrice = GMUtils.get7012InterstitialPrice(ttFullScreenAd);
                                 Log.i(TAG, "bid price: " + bestPrice);
                                 if (bestPrice <= 0) {
                                     loadFailed(null, "", "onFullScreenVideoCached,but bestPrice == null");

@@ -147,7 +147,7 @@ public class GMBanner extends TPBannerAdapter {
 
                         if (isC2SBidding) {
                             if (onC2STokenListener != null) {
-                                double bestPrice = GMUtil.getBestPrice(mBannerAd);
+                                double bestPrice = GMUtils.get7012BannerPrice(mBannerAd);
                                 Log.i(TAG, "bid price: " + bestPrice);
                                 if (bestPrice <= 0) {
                                     loadFailed(null, "", "onNativeExpressAdLoad,but bestPrice == null");

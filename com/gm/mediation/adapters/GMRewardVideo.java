@@ -18,10 +18,8 @@ import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
 import com.bytedance.sdk.openadsdk.TTRewardVideoAd;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot;
-import com.bytedance.sdk.openadsdk.mediation.manager.MediationFullScreenManager;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationRewardManager;
 import com.tradplus.ads.base.GlobalTradPlus;
-import com.tradplus.ads.base.adapter.TPInitMediation;
 import com.tradplus.ads.base.adapter.reward.TPRewardAdapter;
 import com.tradplus.ads.base.common.TPError;
 
@@ -129,7 +127,7 @@ public class GMRewardVideo extends TPRewardAdapter {
                         Log.i(TAG, "onFullScreenVideoCached: ");
                         if (isC2SBidding) {
                             if (onC2STokenListener != null) {
-                                double bestPrice = GMUtil.getBestPrice(rewardVideoAd);
+                                double bestPrice = GMUtils.get7012RewardPrice(rewardVideoAd);
                                 Log.i(TAG, "bid price: " + bestPrice);
                                 if (bestPrice <= 0) {
                                     loadFailed(null, "", "onFullScreenVideoCached,but bestPrice == null");
@@ -182,6 +180,8 @@ public class GMRewardVideo extends TPRewardAdapter {
             if (tpParams.containsKey("appId")) {
                 appId = tpParams.get("appId");
             }
+            //appId = "5160715";
+            //slotId = "103124253";
         }
 
         if (userParams != null && userParams.size() > 0) {
@@ -259,6 +259,7 @@ public class GMRewardVideo extends TPRewardAdapter {
                 if (mShowListener != null) {
                     mShowListener.onAdShown();
                     mShowListener.onAdVideoStart();
+
                 }
             }
 

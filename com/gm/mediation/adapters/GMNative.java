@@ -7,7 +7,6 @@ import static com.tradplus.ads.base.common.TPError.NETWORK_NO_FILL;
 
 import android.app.Activity;
 import android.content.Context;
-import android.media.metrics.LogSessionId;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -22,10 +21,8 @@ import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationExpressRenderListener;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationNativeManager;
 import com.tradplus.ads.base.GlobalTradPlus;
-import com.tradplus.ads.base.adapter.TPInitMediation;
 import com.tradplus.ads.base.adapter.nativead.TPNativeAdapter;
 import com.tradplus.ads.base.common.TPError;
-import com.tradplus.ads.common.DataKeys;
 import com.tradplus.ads.common.util.DeviceUtils;
 
 import java.util.HashMap;
@@ -72,6 +69,7 @@ public class GMNative extends TPNativeAdapter {
             return;
         }
 
+        Log.i(TAG, "loadCustomAd slotId: " +slotId);
         InitManager.getInstance().initSDK(context, localParams, tpParams, new InitManager.InitCallback() {
             @Override
             public void onSuccess() {
@@ -177,7 +175,7 @@ public class GMNative extends TPNativeAdapter {
     private void loadNormalRander(TTFeedAd ttFeedAd, Context context) {
         if (isC2SBidding) {
             if (onC2STokenListener != null) {
-                double bestPrice = GMUtil.getBestPrice(ttFeedAd);
+                double bestPrice = GMUtils.get7012NativePrice(ttFeedAd);
                 Log.i(TAG, "bid price: " + bestPrice);
                 if (bestPrice <= 0) {
                     loadFailed(null, "", "onNativeExpressAdLoad,but bestPrice == null");
@@ -206,7 +204,7 @@ public class GMNative extends TPNativeAdapter {
             public void onRenderSuccess(View view, float v, float v1, boolean b) {
                 if (isC2SBidding) {
                     if (onC2STokenListener != null) {
-                        double bestPrice = GMUtil.getBestPrice(ttFeedAd);
+                        double bestPrice = GMUtils.get7012NativePrice(ttFeedAd);
                         Log.i(TAG, "bid price: " + bestPrice);
                         if (bestPrice <= 0) {
                             loadFailed(null, "", "onNativeExpressAdLoad,but bestPrice == null");
@@ -281,6 +279,8 @@ public class GMNative extends TPNativeAdapter {
                     videoMute = false;
                 }
             }
+            //appId = "5160715";
+            //slotId = "103525896";
         }
 
 

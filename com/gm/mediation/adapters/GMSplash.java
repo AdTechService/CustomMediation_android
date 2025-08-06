@@ -124,7 +124,7 @@ public class GMSplash extends TPSplashAdapter {
                         mCSJSplashAd = csjSplashAd;
                         if (isC2SBidding) {
                             if (onC2STokenListener != null) {
-                                double bestPrice = GMUtil.getBestPrice(mCSJSplashAd);
+                                double bestPrice = GMUtils.get7012RewardPrice(mCSJSplashAd);
                                 Log.i(TAG, "bid price: " + bestPrice);
                                 if (bestPrice <= 0) {
                                     loadFailed(null, "", "onFullScreenVideoCached,but bestPrice == null");
@@ -189,6 +189,8 @@ public class GMSplash extends TPSplashAdapter {
             if (tpParams.containsKey("appId")) {
                 appId = tpParams.get("appId");
             }
+            //slotId= "103526673";
+            //appId = "5160715";
         }
 
         if (userParams != null && userParams.size() > 0) {
